@@ -10,29 +10,24 @@ A Python Command Line Project
 - Database Table
     - use SQLaichemy to create and interact with two or more related databased
     - Table: worker
-        - id
-        - LastName
-        - FirstName
-        - Gender
-        - address
-        - shift
+        - ID
+        - lastname
+        - firstname
+        - gender
+        - Shift
         - login
-    - Table: shift
+        - Employee_ID
+    - Table: Department (Association table)
         - id
-        - day_shift
-        - night_shift
-        - Morning_shit
-        - afternoon_shit
-    - Table: Department
-        - id
-        - Department_name
-        - Department_address
+        - workers_id
+        - roles_id
+        - name
+        - City
     - Talbe: (Many-to-Many) roles
         - id
         - roles_type
         - roles_name
-        - worker_name
-        - worker_login
+        - level
 - Object Relationship
     - worker can be differenct roles
     - department has many roles
