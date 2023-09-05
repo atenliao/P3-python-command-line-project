@@ -11,6 +11,7 @@ ipdb = "==0.13.9"
 numpy = "*"
 prettycli = "*"
 simple-term-menu = "*"
+pyfiglet = "*"
 
 [dev-packages]
 
