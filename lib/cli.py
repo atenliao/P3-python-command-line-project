@@ -1,7 +1,7 @@
 # import ipdb
 from prettycli import red
 from simple_term_menu import TerminalMenu
-from models import Worker,Department
+from models import Worker,Department, Role
 from pyfiglet import figlet_format
 import random
 import time
@@ -49,7 +49,7 @@ class Cli():
         print("\n" * lines)
 
     def handle_login(self):
-        print("the login Format is Lastname + first 4 charS of firstname\n")
+        print("the Login Format is Lastname + first 4 chars of firstname\n")
         login = input("Please enter login:\n\n")
         regex = r"[A-Za-z]"
         if re.match(regex,login):
@@ -58,6 +58,7 @@ class Cli():
                 print("found the worker by login")
                 self.current_worker = worker
                 print(session.query(Worker).filter(Worker.login.like(login)).first())
+                options=["All worker", "New worker","Edit worker Info", "Exit"]
                 self.show_worker_options()
                 # import ipdb; ipdb.set_trace()
             else:
@@ -76,11 +77,13 @@ class Cli():
 
     def create_new_worker(self):
         department = random.choice(session.query(Department).all())
+        
         Lastname = self.get_worker_info("please enter your lastname")
         Firstname = self.get_worker_info("please enter your firstname")
         Gender = prompt.getGender()
         Shift = prompt.getShift()
-        self.current_worker = Worker.create(
+        role = random.choice(session.query(Role).all())
+        worker = Worker.create(
             lastname = Lastname,
             firstname = Firstname,
             gender = Gender,
@@ -88,14 +91,28 @@ class Cli():
             login = Lastname + Firstname[0:4] ,
             Employee_ID =random.randint(10000,50000),
             department_id = department.id
+            
             )
-        # import ipdb; ipdb.set_trace()
+        worker.roles.append(role)
+        session.add(worker)
+        session.commit()
+               
+        
 
-    def show_worker_options(self):
-        options=["All worker", "New worker","Edit worker Info", "Exit"]
-        terminal_menu = TerminalMenu(options)
-        menu_entry_index = terminal_menu.show()
-        print(options[menu_entry_index])
+    def show_worker_options(self,options=None):
+        if options:
+            terminal_menu = TerminalMenu(options)
+            menu_entry_index = terminal_menu.show()
+            print(options[menu_entry_index])
+
+
+    
+    def delete_Login(self,login):
+        session.query(Worker).filter(Worker.login.like(login)).delete()
+        session.commit()
+
+
+
     def exit(self):
         print("Bye!")
 
