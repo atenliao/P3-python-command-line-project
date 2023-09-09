@@ -3,13 +3,16 @@ import random
 import numpy as np
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-# from Session import session
-from models import Worker, Role, Department,Workerrole
+from Session import session
+from models import Worker, Role, Workerrole
+from Department import Department
+
+myDepartment = Department()
 
 if __name__ == '__main__':
-        engine = create_engine('sqlite:///db/database.db',pool_pre_ping=True)
-        Session = sessionmaker(bind=engine)
-        session = Session()
+        # engine = create_engine('sqlite:///db/database.db',pool_pre_ping=True)
+        # Session = sessionmaker(bind=engine)
+        # session = Session()
 
         session.query(Worker).delete()
         session.query(Role).delete()
@@ -19,45 +22,16 @@ if __name__ == '__main__':
         fake = Faker()
         Gender = ['Female', 'Male']
         Shift = ['7:30am-6:00pm', '7:30am-12:30pm', '1:00pm-6:00pm', '6:30pm-5:00am', '6:30pm-11:30pm','0:00am-5:00am']
-        Departments_dic= [
-            {
-                "name": "OAK7",
-                "city": "Neward"
-            },
-            {
-                "name": "OAK4",
-                "city": "Fremont"
-            },
-            {
-                "name": "SJC8",
-                "city": "Tracy"
-            },
-            {
-                "name":"SCK9",
-                "city":"Oakland"
-            },
-            {
-                "name": "EAC2",
-                "city": "San Francisco"
-            }
-            ]
         
-        departments = []
-        for i in Departments_dic:
-            department = Department(
-                name = i.get("name"),
-                city = i.get("city"),
-            )
-            session.add(department)
-            session.commit()
-            departments.append(department)
+        departments =myDepartment.setDepartments()
+        # print(departments)
         workers = []
         rolename = ['Pack Flow', 'Picking','Pack Single', 'Customer Return', 'Waterspider','Sort Flow','Rebin','Ship Dock', 'Problem solve']
         for i in range(50):
             gender= np.random.choice(Gender, p=[0.5, 0.5]),
             lastname = fake.last_name_male() if gender == 'Male' else fake.last_name_female()
-            firstname = fake.first_name_male() if gender== 'Male' else fake.first_name_female()
-            department = random.choice(departments)
+            firstname = fake.first_name_male() if gender == 'Male' else fake.first_name_female()
+            department =  random.choice(departments)
             worker = Worker(
                 lastname = lastname,
                 firstname= firstname,

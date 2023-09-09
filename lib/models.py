@@ -1,21 +1,27 @@
 from sqlalchemy import Column, String, Integer, create_engine, Table, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
-# from Session import session
-engine = create_engine("sqlite:///db/database.db")
-Session = sessionmaker(bind=engine)
-session = Session()
+from Department import Department
+from Session import session
+from base import Base
+# engine = create_engine("sqlite:///db/database.db")
+# Session = sessionmaker(bind=engine)
+# session = Session()
 
-Base = declarative_base()
+
 
 class Workerrole(Base):
     __tablename__ = "workerrole"
-    id = Column(Integer,nullable=True, primary_key=True)
-    workers_id = Column(Integer, ForeignKey("worker.id"),nullable=True, primary_key= True)
-    roles_id = Column(Integer, ForeignKey("role.id"),nullable=True, primary_key = True)
+
+    id = Column(Integer, primary_key=True)
+    workers_id = Column(Integer, ForeignKey("worker.id"),nullable=True)
+    roles_id = Column(Integer, ForeignKey("role.id"),nullable=True)
     
     def __repr__(self):
         return "<workerrole " \
+            + f"id={self.id}, " \
+            + f"workers_id={self.worker.id}, " \
+            + f"roles_id={self.role.id}, " \
             + ">"
 
 
@@ -32,6 +38,14 @@ class Worker(Base):
     department_id = Column(Integer, ForeignKey("department.id"))
     roles = relationship("Role", secondary= "workerrole", overlaps="roles")
     
+
+    @classmethod
+    def create(cls, **kwargs):
+        worker = Worker(**kwargs)
+        print(worker)
+        session.add(worker)
+        session.commit()
+        return worker
 
     @classmethod
     def find_or_create_by(cls,login):
@@ -55,19 +69,6 @@ class Worker(Base):
             + f"Department_ID={self.department_id}, " \
             + ">"
 
-class Department(Base):
-    __tablename__ = "department"
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String(5),nullable=False)
-    city = Column(String, nullable=False)
-    
-    worker = relationship("Worker",backref="department")
-    def __repr__(self):
-        return "<department " \
-            + f"name={self.name}, " \
-            + f"city={self.city}, " \
-            + ">"
 
 class Role(Base):
     __tablename__ = "role"
