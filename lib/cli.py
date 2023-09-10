@@ -125,7 +125,7 @@ class Cli():
             print("Your Firstname has already updated successfully!")
         elif selection == "Gender":
             gender = prompt.getGender()
-            worker.Gender = gender
+            worker.gender = gender
             session.commit()
             print("Your Gender has already updated successfully!")
         elif selection == "Shift":
