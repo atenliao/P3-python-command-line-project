@@ -11,26 +11,15 @@ from prompt import Prompt
 from banner import Banner
 from Session import session
 
-
-# myDepartment = Department()
 prompt = Prompt()
 class Cli():
     def __init__(self):
         self.current_worker = None
 
-
     def start(self):
         self.clear_screen(1)
         Banner.Displaystring("Wellcome Workers database")
         return self.welcome()
-        # options = ["Login","Exit"]
-        # terminal_menu = TerminalMenu(options)
-        # menu_entry_index = terminal_menu.show()
-        # # print(f"You have selected {options[menu_entry_index]}!")
-        # if options[menu_entry_index] =="Login":
-        #     self.handle_login()
-        # elif options[menu_entry_index] == "Exit":
-        #     self.exit()
 
     def welcome(self):
         print("Are you a new Worker")
@@ -60,13 +49,13 @@ class Cli():
                 selection = self.show_worker_options(options)
                 print(selection)
                 if selection == "Show worker Info":
-                # self.current_worker = worker
                     print(self.current_worker)
                 elif selection == "Delete worker":
-                    # import ipdb; ipdb.set_trace()
                     self.delete_Login(login)
                 elif selection == "Edit worker Info":
                     self.edit_worker_Info(worker)
+                else:
+                    self.exit()
                 
             else:
                 print("Please Input again")
@@ -107,7 +96,6 @@ class Cli():
                
     
     def edit_worker_Info(self, worker):
-        # worker = session.query(Worker).filter(Worker.login == login).first()
         options=["Lastname", "Firstname","Gender", "Shift", "Exit"]
         selection = self.show_worker_options(options)
         if selection == "Lastname":
@@ -135,8 +123,6 @@ class Cli():
             print("Your Shift has already updated successfully!")
         elif selection == "Exit":
             self.exit()
-        
-        # import ipdb; ipdb.set_trace()
 
     def show_worker_options(self,options=None):
         if isinstance(options,list):
@@ -167,29 +153,3 @@ class Cli():
 
 app = Cli()
 app.start()
-# def start():
-#     options = ["All workers", "add worker","Exit"]
-#     terminal_menu = TerminalMenu(options)
-#     menu_entry_index = terminal_menu.show()
-#     print(f"You have selected {options[menu_entry_index]}!")
-#     # print("Welcome to Worker Tracker!\n")
-#     # print("1. ")
-#     # print("2. add worker")
-#     # print("3. Exit")
-#     # user_intput = input("please make selection (1-3): ")
-#     # handle_user_input(user_intput)
-
-# def handle_user_input(input):
-#     is_number = input.isdigit()
-#     if(is_number):
-#         selection = int(input)
-#         if 1 <= selection  <= 3:
-#             handle_selection(selection)
-#             print("selection in 1 and 3")
-#         #     handle_selection(selection)
-#         else:
-#             print(red("Incorrect selection"))
-#             start()
-#         # ipdb.set_trace()
-
-# start()
