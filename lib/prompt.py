@@ -39,8 +39,8 @@ class Prompt():
             2: "Maile"
         }
         gender_key = self.confirm(self.makeMenu(options),input="Gender")
-        
-        return options_dic.get(gender_key,"None")
+        return self.makeMenu(options)
+        # return options_dic.get(gender_key,"None")
 
     def getShift(self):
         options=[
@@ -51,14 +51,19 @@ class Prompt():
         '6:30pm-11:30pm',
         '0:00am-5:00am'
         ]
-        options_dic={
-            1: '7:30am-6:00pm', 
-            2: '7:30am-12:30pm', 
-            3: '1:00pm-6:00pm', 
-            4: '6:30pm-5:00am', 
-            5: '6:30pm-11:30pm',
-            6: '0:00am-5:00am'
-        }
-        default= '7:30am-6:00pm'
-        shift_key = self.confirm(self.makeMenu(options),input="time shift")
-        return options_dic.get(shift_key, default)
+        # options_dic={
+        #     1: '7:30am-6:00pm', 
+        #     2: '7:30am-12:30pm', 
+        #     3: '1:00pm-6:00pm', 
+        #     4: '6:30pm-5:00am', 
+        #     5: '6:30pm-11:30pm',
+        #     6: '0:00am-5:00am'
+        # }
+        # default= '7:30am-6:00pm'
+        shift= self.makeMenu(options)
+        if self.confirm(shift,input="time shift"):
+        #     shift_key = self.makeMenu(options)
+        # print('key: ',shift_key)
+            return shift
+        else:
+            getShift()

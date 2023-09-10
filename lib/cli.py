@@ -89,6 +89,7 @@ class Cli():
         Firstname = self.get_worker_info("please enter your firstname")
         Gender = prompt.getGender()
         Shift = prompt.getShift()
+        login =  self.create_Login(Lastname, Firstname)
         role = random.choice(session.query(Role).all())
         worker = Worker.create(
             lastname = Lastname,
@@ -115,19 +116,24 @@ class Cli():
             worker.login = self.create_Login(worker.lastname, worker.firstname)
             # worker.login = worker.lastname + worker.firstname[0:4]
             session.commit()
+            print("Your Lastname has already updated successfully!")
         elif selection == "Firstname":
-            Lastname = input("please input your firstname: ")
+            firstname = input("please input your firstname: ")
             worker.firstname = firstname
             worker.login = self.create_Login(worker.lastname, worker.firstname)
             session.commit()
+            print("Your Firstname has already updated successfully!")
         elif selection == "Gender":
             gender = prompt.getGender()
             worker.Gender = gender
             session.commit()
+            print("Your Gender has already updated successfully!")
         elif selection == "Shift":
             shift = prompt.getShift()
+            print('shift is',shift)
             worker.shift = shift
             session.commit()
+            print("Your Shift has already updated successfully!")
         elif selection == "Exit":
             self.exit()
         
