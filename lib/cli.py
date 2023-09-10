@@ -55,8 +55,7 @@ class Cli():
                 elif selection == "Edit worker Info":
                     self.edit_worker_Info(worker)
                 else:
-                    self.exit()
-                
+                    self.exit()   
             else:
                 print("Please Input again")
                 self.handle_login()
