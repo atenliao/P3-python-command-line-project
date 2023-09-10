@@ -114,7 +114,6 @@ class Cli():
             lastname = input("please input your lastname: ")
             worker.lastname = lastname
             worker.login = self.create_Login(worker.lastname, worker.firstname)
-            # worker.login = worker.lastname + worker.firstname[0:4]
             session.commit()
             print("Your Lastname has already updated successfully!")
         elif selection == "Firstname":
