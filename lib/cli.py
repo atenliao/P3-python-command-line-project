@@ -56,14 +56,21 @@ class Cli():
             worker = Worker.find_or_create_by(login)
             if worker:
                 print("found the worker by login")
-                self.current_worker = worker
-                print(session.query(Worker).filter(Worker.login.like(login)).first())
-                options=["All worker", "New worker","Edit worker Info", "Exit"]
-                self.show_worker_options()
-                # import ipdb; ipdb.set_trace()
+                options=["Show worker Info", "Delete worker","Edit worker Info", "Exit"]
+                selection = self.show_worker_options(options)
+                print(selection)
+                if selection == "Show worker Info":
+                # self.current_worker = worker
+                    print(self.current_worker)
+                elif selection == "Delete worker":
+                    # import ipdb; ipdb.set_trace()
+                    self.delete_Login(login)
+                elif selection == "Edit worker Info":
+                    self.edit_worker_Info(worker)
+                
             else:
-                print("Please create a new worker")
-                self.create_new_worker()
+                print("Please Input again")
+                self.handle_login()
         else:
             print(red("Invalid login"))
             time.sleep(2)
@@ -97,21 +104,55 @@ class Cli():
         session.add(worker)
         session.commit()
                
+    
+    def edit_worker_Info(self, worker):
+        # worker = session.query(Worker).filter(Worker.login == login).first()
+        options=["Lastname", "Firstname","Gender", "Shift", "Exit"]
+        selection = self.show_worker_options(options)
+        if selection == "Lastname":
+            lastname = input("please input your lastname: ")
+            worker.lastname = lastname
+            worker.login = self.create_Login(worker.lastname, worker.firstname)
+            # worker.login = worker.lastname + worker.firstname[0:4]
+            session.commit()
+        elif selection == "Firstname":
+            Lastname = input("please input your firstname: ")
+            worker.firstname = firstname
+            worker.login = self.create_Login(worker.lastname, worker.firstname)
+            session.commit()
+        elif selection == "Gender":
+            gender = prompt.getGender()
+            worker.Gender = gender
+            session.commit()
+        elif selection == "Shift":
+            shift = prompt.getShift()
+            worker.shift = shift
+            session.commit()
+        elif selection == "Exit":
+            self.exit()
         
+        # import ipdb; ipdb.set_trace()
 
     def show_worker_options(self,options=None):
-        if options:
+        if isinstance(options,list):
             terminal_menu = TerminalMenu(options)
             menu_entry_index = terminal_menu.show()
-            print(options[menu_entry_index])
+            return(options[menu_entry_index])
 
 
     
     def delete_Login(self,login):
-        session.query(Worker).filter(Worker.login.like(login)).delete()
+        worker = session.query(Worker).filter(Worker.login.like(login)).first()
+        session.delete(worker)
         session.commit()
 
-
+    def create_Login(self,lastname, firstname):
+        if lastname:
+            if len(firstname) >= 4:
+                login = lastname + firstname[0:4]
+            else:
+                login = lastname + firstname
+        return login
 
     def exit(self):
         print("Bye!")
