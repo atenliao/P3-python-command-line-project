@@ -64,7 +64,6 @@ class Cli():
         if re.match(regex,login):
             worker = Worker.find_or_create_by(login)
             if worker:
-                # print("found the worker by login")
                 self.worker_Menu(worker) 
             else:
                 print("Please Input again")
@@ -73,7 +72,6 @@ class Cli():
             print(red("Invalid login"))
             time.sleep(2)
             self.start()
-        
         pass
 
     def get_worker_info(self, question):
@@ -97,7 +95,6 @@ class Cli():
             login = Lastname + Firstname[0:4] ,
             Employee_ID =random.randint(10000,50000),
             department_id = department.id
-            
             )
         worker.roles.append(role)
         session.add(worker)
@@ -106,7 +103,6 @@ class Cli():
         return login
         
                
-    
     def edit_worker_Info(self, worker):
         options=["Lastname", "Firstname","Gender", "Shift", "Exit"]
         selection = self.show_worker_options(options)
@@ -141,7 +137,6 @@ class Cli():
             terminal_menu = TerminalMenu(options)
             menu_entry_index = terminal_menu.show()
             return(options[menu_entry_index])
-
 
     
     def delete_Login(self,login):
