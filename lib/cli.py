@@ -48,7 +48,7 @@ class Cli():
         print(selection)
         if selection == "Show worker Info":
             print(worker)
-            self.worker_Menu(worker)
+            self.handle_login(worker.login)
         elif selection == "Delete worker":
             print("worker login is",worker.login)
             self.delete_Login(worker.login)
@@ -67,8 +67,10 @@ class Cli():
             if worker:
                 self.worker_Menu(worker) 
             else:
-                print("Please Input again")
-                self.handle_login()
+                print("the worker is not in the database \n")
+                print("The Login Format is Lastname + first 4 chars of firstname\n")
+                login = input("Please enter login:\n\n")
+                self.handle_login(login)
         else:
             print(red("Invalid login"))
             time.sleep(2)
