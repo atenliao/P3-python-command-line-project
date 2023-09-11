@@ -50,7 +50,8 @@ class Cli():
             print(worker)
             self.worker_Menu(worker)
         elif selection == "Delete worker":
-            self.delete_Login(login)
+            print("worker login is",worker.login)
+            self.delete_Login(worker.login)
             self.worker_Menu(worker)
         elif selection == "Edit worker Info":
             self.edit_worker_Info(worker)
