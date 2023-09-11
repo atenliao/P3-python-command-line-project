@@ -25,37 +25,47 @@ class Cli():
         print("Are you a new Worker")
         selection = prompt.yesno(option=["Exit","Debug"])
         if selection == "Yes":
-            print("please sign up")
-            self.create_new_worker()
+            getlogin = self.create_new_worker()
+            if getlogin:
+                print(getlogin)
+                print("the new worker create successful")
+                self.handle_login(getlogin)
         elif selection == "Exit":
             self.exit()
         elif selection == "Debug":
             self.debug()
         else:
-            self.handle_login()
+            print("the Login Format is Lastname + first 4 chars of firstname\n")
+            login = input("Please enter login:\n\n")
+            self.handle_login(login)
 
     def clear_screen(self,lines):
         print("\n" * lines)
 
-    def handle_login(self):
-        print("the Login Format is Lastname + first 4 chars of firstname\n")
-        login = input("Please enter login:\n\n")
+    def worker_Menu(self,worker):
+        options=["Show worker Info", "Delete worker","Edit worker Info", "Exit"]
+        selection = self.show_worker_options(options)
+        print(selection)
+        if selection == "Show worker Info":
+            print(worker)
+            self.worker_Menu(worker)
+        elif selection == "Delete worker":
+            self.delete_Login(login)
+            self.worker_Menu(worker)
+        elif selection == "Edit worker Info":
+            self.edit_worker_Info(worker)
+            print(worker)
+            self.worker_Menu(worker)
+        else:
+            self.exit()
+        
+    def handle_login(self,login):
         regex = r"[A-Za-z]"
         if re.match(regex,login):
             worker = Worker.find_or_create_by(login)
             if worker:
-                print("found the worker by login")
-                options=["Show worker Info", "Delete worker","Edit worker Info", "Exit"]
-                selection = self.show_worker_options(options)
-                print(selection)
-                if selection == "Show worker Info":
-                    print(self.current_worker)
-                elif selection == "Delete worker":
-                    self.delete_Login(login)
-                elif selection == "Edit worker Info":
-                    self.edit_worker_Info(worker)
-                else:
-                    self.exit()   
+                # print("found the worker by login")
+                self.worker_Menu(worker) 
             else:
                 print("Please Input again")
                 self.handle_login()
@@ -92,6 +102,9 @@ class Cli():
         worker.roles.append(role)
         session.add(worker)
         session.commit()
+        
+        return login
+        
                
     
     def edit_worker_Info(self, worker):
@@ -135,6 +148,9 @@ class Cli():
         worker = session.query(Worker).filter(Worker.login.like(login)).first()
         session.delete(worker)
         session.commit()
+
+    # def Login_Manu(self, iscreated, login):
+
 
     def create_Login(self,lastname, firstname):
         if lastname:

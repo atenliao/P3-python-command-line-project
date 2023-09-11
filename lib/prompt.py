@@ -12,7 +12,7 @@ class Prompt():
 
 
     def confirm(self,content,input="input"):
-        print(f"your {input} is {content}\n are you confirm\n")
+        print(f"your {input} is {content}; are you confirm\n")
         
         return self.yesno() == "Yes"
 
