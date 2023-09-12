@@ -69,21 +69,5 @@ if __name__ == '__main__':
                     session.add(worker)
                     session.commit()
             
-        # for worker in workers:
-        #     roles = []
-        #     for i in range(random.randint(1,4)):
-                
-        #         role = Role(
-        #             name = random.choice(rolename),
-        #             level = random.randint(0,10),
-        #         )
-        #         if role.name not in worker.roles:
-        #         # import ipdb; ipdb.set_trace()
-        #             role.workers.append(worker)
-        #     session.add(role)
-        #     session.commit()
-            # session.close()
-          
-
-# import ipdb; ipdb.set_trace()
+       
     

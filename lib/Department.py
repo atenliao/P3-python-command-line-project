@@ -55,6 +55,5 @@ class Department(Base):
             session.add(department)
             session.commit()
             departments.append(department)
-        # print(departments)
         return departments
     

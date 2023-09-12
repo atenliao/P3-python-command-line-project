@@ -1,4 +1,4 @@
-# import ipdb
+
 from prettycli import red
 from simple_term_menu import TerminalMenu
 from models import Worker,Department, Role
@@ -60,7 +60,6 @@ class Cli():
             print(f"worker login {worker.login} is deleted")
             self.delete_Login(worker.login)
             self.Main_menu()
-            # self.worker_Menu(worker)
         elif selection == "Edit worker Info":
             self.edit_worker_Info(worker)
             print(worker)
@@ -155,7 +154,6 @@ class Cli():
         session.delete(worker)
         session.commit()
 
-    # def Login_Manu(self, iscreated, login):
 
 
     def create_Login(self,lastname, firstname):
