@@ -28,7 +28,7 @@ class Cli():
             getlogin = self.create_new_worker()
             if getlogin:
                 print(getlogin)
-                print("the new worker create successful")
+                print("The new worker create successful!!!\n")
                 self.handle_login(getlogin)
         elif selection == "Exit":
             self.exit()
@@ -38,6 +38,14 @@ class Cli():
             print("the Login Format is Lastname + first 4 chars of firstname\n")
             login = input("Please enter login:\n\n")
             self.handle_login(login)
+    def Main_menu(self):
+        options= ["Main Menu", "Exit"]
+        selection = self.show_worker_options(options)
+        if selection == "Main Menu":
+            self.welcome()
+        elif selection == "Exit":
+            self.exit()
+
 
     def clear_screen(self,lines):
         print("\n" * lines)
@@ -45,14 +53,14 @@ class Cli():
     def worker_Menu(self,worker):
         options=["Show worker Info", "Delete worker","Edit worker Info", "Exit"]
         selection = self.show_worker_options(options)
-        print(selection)
         if selection == "Show worker Info":
             print(worker)
             self.handle_login(worker.login)
         elif selection == "Delete worker":
-            print("worker login is",worker.login)
+            print(f"worker login {worker.login} is deleted")
             self.delete_Login(worker.login)
-            self.worker_Menu(worker)
+            self.Main_menu()
+            # self.worker_Menu(worker)
         elif selection == "Edit worker Info":
             self.edit_worker_Info(worker)
             print(worker)
