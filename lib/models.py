@@ -66,8 +66,9 @@ class Worker(Base):
             + f"gender={self.gender}, " \
             + f"shift={self.shift}, " \
             + f"Employee_ID={self.Employee_ID}, " \
-            + f"Department_ID={self.department_id}, " \
-            + ">"
+            + f"Department_ID={self.department_id} " \
+            + ">" \
+            + "\n\n"
 
 
 class Role(Base):
