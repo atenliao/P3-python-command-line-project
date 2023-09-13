@@ -1,5 +1,5 @@
 
-from prettycli import red,green
+from prettycli import red,green,yellow,blue
 from simple_term_menu import TerminalMenu
 from models import Worker, Role, Workerrole
 from pyfiglet import figlet_format
@@ -92,7 +92,7 @@ class Cli():
 
     def show_department(self, ID):
         department = session.query(Department).filter(Department.id == ID).first()
-        print(f"The Worker department is {department.name} locate in {department.city}")
+        print(f"The Worker department is {blue(department.name)} locate in {yellow(department.city)}\n\n")
 
     def get_worker_info(self, question):
         return prompt.askQuestion(question)
@@ -103,7 +103,9 @@ class Cli():
         print("worker is assigned roles in")
         for worker in workerrole:
             workerroles = session.query(Role).filter(Role.id == worker.roles_id).first()
-            print(red(f"{workerroles.name}")+" with level "+ green(f"{workerroles.level}"))
+            print(f"{blue(workerroles.name)} with level {green(str(workerroles.level))}")
+
+        print("\n")
 
     def create_new_worker(self):
         department = random.choice(session.query(Department).all())
@@ -160,7 +162,7 @@ class Cli():
 
     def show_options(self,options=None):
         if isinstance(options,list):
-            terminal_menu = TerminalMenu(options)
+            terminal_menu = TerminalMenu(menu_entries=options,menu_highlight_style=("bg_black","fg_yellow"),)
             menu_entry_index = terminal_menu.show()
             return(options[menu_entry_index])
     
