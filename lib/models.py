@@ -20,8 +20,8 @@ class Workerrole(Base):
     def __repr__(self):
         return "<workerrole " \
             + f"id={self.id}, " \
-            + f"workers_id={self.worker.id}, " \
-            + f"roles_id={self.role.id}, " \
+            + f"workers_id={self.workers_id}, " \
+            + f"roles_id={self.roles_id}, " \
             + ">"
 
 

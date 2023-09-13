@@ -1,7 +1,7 @@
 
 from prettycli import red
 from simple_term_menu import TerminalMenu
-from models import Worker,Department, Role
+from models import Worker, Role, Workerrole
 from pyfiglet import figlet_format
 import random
 import time
@@ -51,7 +51,7 @@ class Cli():
         print("\n" * lines)
 
     def worker_Menu(self,worker):
-        options=["Show worker Info","Show worker Department", "Delete worker","Edit worker Info", "Exit"]
+        options=["Show worker Info","Show worker Department","Show worker roles", "Delete worker","Edit worker Info", "Exit"]
         selection = self.show_worker_options(options)
         if selection == "Show worker Info":
             print(worker)
@@ -59,6 +59,8 @@ class Cli():
         elif selection == "Show worker Department":
             print(f"worker id is {worker.department_id}")
             self.show_department(worker.department_id)
+        elif selection == "Show worker roles":
+            self.show_worker_roles(worker.id)
         elif selection == "Delete worker":
             print(f"worker login {worker.login} is deleted")
             self.delete_Login(worker.login)
@@ -89,11 +91,18 @@ class Cli():
 
     def show_department(self, ID):
         department = session.query(Department).filter(Department.id == ID).first()
-        print("The Worker department is {department.name} locate in {department.city}")
+        print(f"The Worker department is {department.name} locate in {department.city}")
 
     def get_worker_info(self, question):
         return prompt.askQuestion(question)
 
+    def show_worker_roles(self,id):
+        workerrole = session.query(Workerrole).filter(Workerrole.workers_id==id).all()
+        # print(workerrole)
+        print("worker is assigned roles in")
+        for worker in workerrole:
+            workerroles = session.query(Role).filter(Role.id == worker.roles_id).first()
+            print(f"{workerroles.name} with level {workerroles.level}")
 
     def create_new_worker(self):
         department = random.choice(session.query(Department).all())
