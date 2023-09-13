@@ -40,7 +40,7 @@ class Cli():
             self.handle_login(login)
     def Main_menu(self):
         options= ["Main Menu", "Exit"]
-        selection = self.show_worker_options(options)
+        selection = self.show_options(options)
         if selection == "Main Menu":
             self.welcome()
         elif selection == "Exit":
@@ -52,7 +52,7 @@ class Cli():
 
     def worker_Menu(self,worker):
         options=["Show worker Info","Show worker Department","Show worker roles","Edit worker Info", "Delete worker", "Exit"]
-        selection = self.show_worker_options(options)
+        selection = self.show_options(options)
         if selection == "Show worker Info":
             print(worker)
             self.handle_login(worker.login)
@@ -131,7 +131,7 @@ class Cli():
                
     def edit_worker_Info(self, worker):
         options=["Lastname", "Firstname","Gender", "Shift", "Exit"]
-        selection = self.show_worker_options(options)
+        selection = self.show_options(options)
         if selection == "Lastname":
             lastname = input("please input your lastname: ")
             worker.lastname = lastname
@@ -151,26 +151,23 @@ class Cli():
             print("Your Gender has already updated successfully!")
         elif selection == "Shift":
             shift = prompt.getShift()
-            print('shift is',shift)
+            print('Shift is',shift)
             worker.shift = shift
             session.commit()
             print("Your Shift has already updated successfully!")
         elif selection == "Exit":
             self.exit()
 
-    def show_worker_options(self,options=None):
+    def show_options(self,options=None):
         if isinstance(options,list):
             terminal_menu = TerminalMenu(options)
             menu_entry_index = terminal_menu.show()
             return(options[menu_entry_index])
-
     
     def delete_Login(self,login):
         worker = session.query(Worker).filter(Worker.login.like(login)).first()
         session.delete(worker)
         session.commit()
-
-
 
     def create_Login(self,lastname, firstname):
         if lastname:
