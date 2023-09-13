@@ -36,7 +36,9 @@ class Cli():
         elif selection == "Debug":
             self.debug()
         else:
-            print(f"the Login Format is {yellow(Lastname)} + first 4 chars of (yellow{Firstname})\n")
+            Lastname = "Lastname"
+            Firstname = "Firstname"
+            print(f"the Login Format is {yellow(Lastname)} + first 4 chars of {yellow(Firstname)}\n")
             login = input("Please enter login:\n\n")
             self.handle_login(login)
     def Main_menu(self):
