@@ -17,20 +17,18 @@ A Python Command Line Project
         - Shift
         - login
         - Employee_ID
+        - Department_id
     - Table: Department (Association table)
         - id
-        - workers_id
-        - roles_id
         - name
         - City
     - Talbe: (Many-to-Many) roles
         - id
-        - roles_type
         - roles_name
         - level
 - Object Relationship
-    - worker can be differenct roles
-    - department has many roles
+    - worker can get differenct roles
+    - each worker is assigned in a department
     - roles be workers == many to many
 - Aggregate and Association Methods
     - CRUD
@@ -47,9 +45,8 @@ A Python Command Line Project
             - change role to a workers
     - Delete
 - Use of Data Structures
-    - Single Source of True
-    - LIST: workers could have a list of roles
-    - Dictionary: Department has set of roles and workers
+    - LIST: workers have a list of roles
+    - Dictionary: Department has its name and location city
 
 #### What area I think wil be most challenging
 - Deciding how data join table and connect each table
