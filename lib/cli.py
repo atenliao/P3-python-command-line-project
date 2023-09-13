@@ -3,6 +3,7 @@ from prettycli import red,green,yellow,blue
 from simple_term_menu import TerminalMenu
 from models import Worker, Role, Workerrole
 from pyfiglet import figlet_format
+import signal
 import random
 import time
 import re
@@ -35,7 +36,7 @@ class Cli():
         elif selection == "Debug":
             self.debug()
         else:
-            print("the Login Format is Lastname + first 4 chars of firstname\n")
+            print(f"the Login Format is {yellow(Lastname)} + first 4 chars of (yellow{Firstname})\n")
             login = input("Please enter login:\n\n")
             self.handle_login(login)
     def Main_menu(self):
@@ -178,6 +179,13 @@ class Cli():
             else:
                 login = lastname + firstname
         return login
+
+    def handler(signum, frame):
+        print(red(" Ctrl-c was pressed!!"))
+        print(blue(" See you! Have a nice day."))
+        exit(1)
+    
+    signal.signal(signal.SIGINT,handler)
 
     def exit(self):
         print("Bye!")
