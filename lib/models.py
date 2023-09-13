@@ -4,10 +4,6 @@ from sqlalchemy.orm import sessionmaker, relationship
 from Department import Department
 from Session import session
 from base import Base
-# engine = create_engine("sqlite:///db/database.db")
-# Session = sessionmaker(bind=engine)
-# session = Session()
-
 
 
 class Workerrole(Base):

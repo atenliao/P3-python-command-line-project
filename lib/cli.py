@@ -13,8 +13,8 @@ from Session import session
 
 prompt = Prompt()
 class Cli():
-    def __init__(self):
-        self.current_worker = None
+    # def __init__(self):
+    #     self.current_worker = None
 
     def start(self):
         self.clear_screen(1)
@@ -51,24 +51,25 @@ class Cli():
         print("\n" * lines)
 
     def worker_Menu(self,worker):
-        options=["Show worker Info","Show worker Department","Show worker roles", "Delete worker","Edit worker Info", "Exit"]
+        options=["Show worker Info","Show worker Department","Show worker roles","Edit worker Info", "Delete worker", "Exit"]
         selection = self.show_worker_options(options)
         if selection == "Show worker Info":
             print(worker)
             self.handle_login(worker.login)
         elif selection == "Show worker Department":
-            print(f"worker id is {worker.department_id}")
             self.show_department(worker.department_id)
+            self.handle_login(worker.login)
         elif selection == "Show worker roles":
             self.show_worker_roles(worker.id)
-        elif selection == "Delete worker":
-            print(f"worker login {worker.login} is deleted")
-            self.delete_Login(worker.login)
-            self.Main_menu()
+            self.handle_login(worker.login)
         elif selection == "Edit worker Info":
             self.edit_worker_Info(worker)
             print(worker)
             self.worker_Menu(worker)
+        elif selection == "Delete worker":
+            print(f"worker login {worker.login} is deleted")
+            self.delete_Login(worker.login)
+            self.Main_menu()
         else:
             self.exit()
         
