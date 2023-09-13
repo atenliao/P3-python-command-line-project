@@ -1,5 +1,5 @@
 
-from prettycli import red
+from prettycli import red,green
 from simple_term_menu import TerminalMenu
 from models import Worker, Role, Workerrole
 from pyfiglet import figlet_format
@@ -102,7 +102,7 @@ class Cli():
         print("worker is assigned roles in")
         for worker in workerrole:
             workerroles = session.query(Role).filter(Role.id == worker.roles_id).first()
-            print(f"{workerroles.name} with level {workerroles.level}")
+            print(red(f"{workerroles.name}")+" with level "+ green(f"{workerroles.level}"))
 
     def create_new_worker(self):
         department = random.choice(session.query(Department).all())
