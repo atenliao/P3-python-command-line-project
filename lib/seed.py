@@ -10,9 +10,6 @@ from Department import Department
 myDepartment = Department()
 
 if __name__ == '__main__':
-        # engine = create_engine('sqlite:///db/database.db',pool_pre_ping=True)
-        # Session = sessionmaker(bind=engine)
-        # session = Session()
 
         session.query(Worker).delete()
         session.query(Role).delete()

@@ -51,11 +51,14 @@ class Cli():
         print("\n" * lines)
 
     def worker_Menu(self,worker):
-        options=["Show worker Info", "Delete worker","Edit worker Info", "Exit"]
+        options=["Show worker Info","Show worker Department", "Delete worker","Edit worker Info", "Exit"]
         selection = self.show_worker_options(options)
         if selection == "Show worker Info":
             print(worker)
             self.handle_login(worker.login)
+        elif selection == "Show worker Department":
+            print(f"worker id is {worker.department_id}")
+            self.show_department(worker.department_id)
         elif selection == "Delete worker":
             print(f"worker login {worker.login} is deleted")
             self.delete_Login(worker.login)
@@ -84,6 +87,10 @@ class Cli():
             self.start()
         pass
 
+    def show_department(self, ID):
+        department = session.query(Department).filter(Department.id == ID).first()
+        print("The Worker department is {department.name} locate in {department.city}")
+
     def get_worker_info(self, question):
         return prompt.askQuestion(question)
 
@@ -111,7 +118,6 @@ class Cli():
         session.commit()
         
         return login
-        
                
     def edit_worker_Info(self, worker):
         options=["Lastname", "Firstname","Gender", "Shift", "Exit"]
