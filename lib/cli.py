@@ -41,6 +41,7 @@ class Cli():
             print(f"the Login Format is {yellow(Lastname)} + first 4 chars of {yellow(Firstname)}\n")
             login = input("Please enter login:\n\n")
             self.handle_login(login)
+
     def Main_menu(self):
         options= ["Main Menu", "Exit"]
         selection = self.show_options(options)
@@ -48,7 +49,6 @@ class Cli():
             self.welcome()
         elif selection == "Exit":
             self.exit()
-
 
     def clear_screen(self,lines):
         print("\n" * lines)
@@ -102,7 +102,6 @@ class Cli():
 
     def show_worker_roles(self,id):
         workerrole = session.query(Workerrole).filter(Workerrole.workers_id==id).all()
-        # print(workerrole)
         print("worker is assigned roles in")
         for worker in workerrole:
             workerroles = session.query(Role).filter(Role.id == worker.roles_id).first()
