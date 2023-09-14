@@ -57,15 +57,14 @@ class Cli():
         options=["Show worker Info","Show worker Department","Show worker roles","Edit worker Info", "Delete worker", "Exit"]
         selection = self.show_options(options)
         if selection == "Show worker Info":
-            
-            print("===========================")
+            print("\n\n===========================")
             print(f"Lastname: {blue(worker.lastname)}\n" \
                 + f"Firstname: {blue(worker.firstname)}\n" \
                 + f"Gender: {blue(worker.gender)}\n" \
-                + f"Shift: {blue(worker.shift)}\n" \
-                + f"Login: {blue(worker.login)}\n") \
-                + f"Employee ID: {blue(worker.Employee_ID)}"
-            print("===========================")
+                + f"Shift: {green(worker.shift)}\n" \
+                + f"Login: {yellow(worker.login)}\n" \
+                + f"Employee ID: {red(str(worker.Employee_ID))}")
+            print("===========================\n\n")
             self.handle_login(worker.login)
         elif selection == "Show worker Department":
             self.show_department(worker.department_id)
