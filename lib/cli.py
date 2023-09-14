@@ -14,8 +14,6 @@ from Session import session
 
 prompt = Prompt()
 class Cli():
-    # def __init__(self):
-    #     self.current_worker = None
 
     def start(self):
         self.clear_screen(1)
