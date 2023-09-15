@@ -29,11 +29,11 @@ class Prompt():
             options.append(option)
         return self.makeMenu(options)
 
-    def makeMenu(self, options, option = None):
+    def makeMenu(self, options, option = None,title=None):
         
         if option:
             options.append(option)
-        menu = TerminalMenu(options)
+        menu = TerminalMenu(options,title=title)
         selection = menu.show()
         return options[selection]
 
