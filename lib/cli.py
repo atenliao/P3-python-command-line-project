@@ -133,7 +133,6 @@ class Cli():
         worker.roles.append(role)
         session.add(worker)
         session.commit()
-        
         return login
                
     def edit_worker_Info(self, worker):
@@ -145,12 +144,14 @@ class Cli():
             worker.login = self.create_Login(worker.lastname, worker.firstname)
             session.commit()
             print("Your Lastname has already updated successfully!")
+
         elif selection == "Firstname":
             firstname = input("please input your firstname: ")
             worker.firstname = firstname
             worker.login = self.create_Login(worker.lastname, worker.firstname)
             session.commit()
             print("Your Firstname has already updated successfully!")
+            
         elif selection == "Gender":
             gender = prompt.getGender()
             worker.gender = gender
