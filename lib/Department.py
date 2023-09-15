@@ -18,8 +18,6 @@ class Department(Base):
             + f"city={self.city}, " \
             + ">"
 
-
-
     @classmethod
     def setDepartments(self):
         Departments_dic= [

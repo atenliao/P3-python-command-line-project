@@ -34,7 +34,6 @@ class Worker(Base):
     department_id = Column(Integer, ForeignKey("department.id"))
     roles = relationship("Role", secondary= "workerrole", overlaps="roles")
     
-
     @classmethod
     def create(cls, **kwargs):
         worker = Worker(**kwargs)
@@ -49,8 +48,7 @@ class Worker(Base):
         if worker:
             return worker
         else:
-            worker = Worker(login = login)
-        
+            worker = Worker(login = login)  
 
     def __repr__(self):
         return "<Worker " \
