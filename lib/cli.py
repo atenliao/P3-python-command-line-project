@@ -87,7 +87,7 @@ class Cli():
             if worker:
                 self.worker_Menu(worker) 
             else:
-                print("the worker is not in the database \n")
+                print("The worker is not in the database \n")
                 print("The Login Format is Lastname + first 4 chars of firstname\n")
                 login = input("Please enter login:\n\n")
                 self.handle_login(login)
