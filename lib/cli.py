@@ -1,5 +1,5 @@
 
-from prettycli import red,green,yellow,blue
+from prettycli import red,green,yellow,blue,color
 from simple_term_menu import TerminalMenu
 from models import Worker, Role, Workerrole
 from pyfiglet import figlet_format
@@ -53,7 +53,7 @@ class Cli():
 
     def worker_Menu(self,worker):
         options=["Show worker Info","Show worker Department","Show worker roles","Edit worker Info", "Delete worker", "Exit"]
-        selection = self.show_options(options)
+        selection = self.show_options(options,"Worker Options Menu")
         if selection == "Show worker Info":
             print("\n\n===========================")
             print(f"Lastname: {blue(worker.lastname)}\n" \
@@ -140,7 +140,7 @@ class Cli():
                
     def edit_worker_Info(self, worker):
         options=["Lastname", "Firstname","Gender", "Shift", "Exit"]
-        selection = self.show_options(options)
+        selection = self.show_options(options,"Edit Worker Info")
         if selection == "Lastname":
             lastname = input("please input your lastname: ")
             worker.lastname = lastname
@@ -167,9 +167,11 @@ class Cli():
         elif selection == "Exit":
             self.exit()
 
-    def show_options(self,options=None):
+    def show_options(self,options=None,title=None):
+        print("\n")
         if isinstance(options,list):
-            terminal_menu = TerminalMenu(menu_entries=options,menu_highlight_style=("bg_black","fg_yellow"),)
+            # print(color(title).rgb_fg(115,100,1))
+            terminal_menu = TerminalMenu(menu_entries=options,title = title,menu_highlight_style=("bg_black","fg_yellow"),)
             menu_entry_index = terminal_menu.show()
             return(options[menu_entry_index])
     
