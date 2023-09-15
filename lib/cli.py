@@ -123,7 +123,8 @@ class Cli():
         Shift = prompt.getShift()
         print(f"shift is: {Shift}")
         login =  self.create_Login(Lastname, Firstname)
-        role = random.choice(session.query(Role).all())
+        getrole = session.query(Role).all()
+        role = random.choice(getrole)
         worker = Worker.create(
             lastname = Lastname,
             firstname = Firstname,

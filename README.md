@@ -111,4 +111,7 @@ Yon can change any info of current worker if choose
 - Exit
 
 ### Exit the Command-line
-You can Exit the command line from choosing Exit in menu or press ctrl+c; then you will exit the program
+You can Exit the command line from choosing Exit in menu or press ctrl+c; then you will exit the program.
+
+### video of the Project
+[work database](https://www.youtube.com/watch?v=C6c0L_CBqTQ)
