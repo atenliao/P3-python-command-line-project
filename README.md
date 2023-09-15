@@ -52,3 +52,23 @@ A Python Command Line Project
 - Deciding how data join table and connect each table
 
 
+### Using the worker database App
+In the github.com, fork the project, and then use git clone to clone the project
+
+```shell
+git clone git@github.com:username/P3-python-command-line-project.git
+```
+### Install packages
+please use command "python3.8 -m pipenv install" to install dependant packages such as alembic, sqlalchemy, faker, numpy, prettycli, simple-term-menu, and pyfiglet
+
+```shell
+python3.8 -m pipenv install alembic sqlalchemy==1.4.41 faker ipdb numpy prettycli simple-term-menu pyfiglet
+```
+### generate database
+Generate database in pipenv shell envirmont
+```shell
+python3.8 -m pipenv shell
+cd lib
+alembic revision --autogenerate -m "generate database"
+alembic run head
+```

@@ -45,14 +45,12 @@ class Worker(Base):
 
     @classmethod
     def find_or_create_by(cls,login):
-        # Query the db for a worker by login
         worker = session.query(Worker).filter(Worker.login.like(login)).first()
         if worker:
             return worker
         else:
             worker = Worker(login = login)
         
-        # import ipdb; ipdb.set_trace()
 
     def __repr__(self):
         return "<Worker " \

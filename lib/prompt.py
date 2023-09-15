@@ -40,7 +40,6 @@ class Prompt():
         gender = self.makeMenu(options)
         if self.confirm(gender,input="Gender"):
             return gender
-        # return options_dic.get(gender_key,"None")
 
     def getShift(self):
         options=[
