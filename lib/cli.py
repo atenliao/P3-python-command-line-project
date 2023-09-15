@@ -14,7 +14,6 @@ from Session import session
 
 prompt = Prompt()
 class Cli():
-
     def start(self):
         self.clear_screen(1)
         Banner.Displaystring("Wellcome Workers database")
