@@ -16,7 +16,7 @@ prompt = Prompt()
 class Cli():
     def start(self):
         self.clear_screen(1)
-        Banner.Displaystring("Wellcome Workers database")
+        Banner.Displaystring("Welcome Workers Database")
         return self.welcome()
 
     def welcome(self):
@@ -164,7 +164,7 @@ class Cli():
             worker.shift = shift
             session.commit()
             print("Your Shift has already updated successfully!")
-            
+
         elif selection == "Exit":
             self.exit()
 
