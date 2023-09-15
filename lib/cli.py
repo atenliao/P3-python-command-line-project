@@ -116,7 +116,6 @@ class Cli():
 
     def create_new_worker(self):
         department = random.choice(session.query(Department).all())
-        
         Lastname = self.get_worker_info("please enter your lastname")
         Firstname = self.get_worker_info("please enter your firstname")
         Gender = prompt.getGender()
