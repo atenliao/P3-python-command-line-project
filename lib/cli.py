@@ -51,7 +51,7 @@ class Cli():
         print("\n" * lines)
 
     def worker_Menu(self,worker):
-        options=["Show worker Info","Show worker Department","Show worker roles","Edit worker Info", "Delete worker", "Exit"]
+        options=["Show worker Info","Show worker Department","Show worker roles","Edit worker Info", "Delete worker", "Exit","Debug"]
         selection = self.show_options(options,"Worker Options Menu")
         if selection == "Show worker Info":
             print("\n\n===========================")
@@ -77,8 +77,10 @@ class Cli():
             print(f"worker login {worker.login} is deleted")
             self.delete_Login(worker.login)
             self.Main_menu()
-        else:
+        elif selection == "Exit":
             self.exit()
+        elif selection == "Debug":
+            self.debug()
         
     def handle_login(self,login):
         regex = r"[A-Za-z]"
@@ -137,7 +139,7 @@ class Cli():
         return login
                
     def edit_worker_Info(self, worker):
-        options=["Lastname", "Firstname","Gender", "Shift", "Exit"]
+        options=["Lastname", "Firstname","Gender", "Shift", "Exit","Debug"]
         selection = self.show_options(options,"Edit Worker Info")
         if selection == "Lastname":
             lastname = input("please input your lastname: ")
@@ -168,6 +170,8 @@ class Cli():
 
         elif selection == "Exit":
             self.exit()
+        elif selection == "Debug":
+            self.debug()
 
     def show_options(self,options=None,title=None):
         print("\n")

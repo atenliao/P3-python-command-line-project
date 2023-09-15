@@ -43,7 +43,7 @@ class Prompt():
             1: "Female",
             2: "Maile"
         }
-        gender = self.makeMenu(options)
+        gender = self.makeMenu(options,title="Gender")
         return gender
 
     def getShift(self):
@@ -56,6 +56,6 @@ class Prompt():
         '0:00am-5:00am'
         ]
        
-        shift= self.makeMenu(options)
+        shift= self.makeMenu(options,title="get Shift")
         return shift
        
