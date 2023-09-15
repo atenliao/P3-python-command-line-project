@@ -41,7 +41,6 @@ if __name__ == '__main__':
             
             session.add(worker)
             session.commit()
-
             workers.append(worker)
 
         roles=[]
@@ -55,14 +54,11 @@ if __name__ == '__main__':
             session.commit()
             roles.append(role)
         
-            # import ipdb; ipdb.s
         for worker in workers:
             for i in range(random.randint(1,4)):
                 role = random.choice(roles)
-                # get_department = random.choice(departments)
                 if role not in worker.roles:
                     worker.roles.append(role)
-                    # worker.departments.append(department)
                     session.add(worker)
                     session.commit()
             
