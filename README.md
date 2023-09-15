@@ -91,7 +91,8 @@ After the new worker being generated, you wil be shown a <b>Woker Options Menu</
 
 ### Worker record exist in database
 If your recored of worker is in database, you can choose 'NO' in main menu. Then, input your login \
-the worker login is worker <font color="green">lastname + 4 characters of firstname</font>. If the firstname len is less then 4, you input <font color="green"> lastname + firstname</font> to enter <b>Worker Options Menu</b>, and choose option for showing worker information.
+the worker login is worker <font color="green">lastname + 4 characters of firstname</font>. If the firstname len is less then 4, you input <font color="green"> lastname + firstname</font> to enter <b>Worker Options Menu</b>, and choose option for showing worker information. <font color='red'><b>The login is case sensitive</b></font>. Thus, please enter your worker login correctly.
+
 ### In Worker Options Menu
 In the Worker Options Menu, you can choose any option to show worker info, department, roles, edit worker ino, or delete worker.
 - Show worker Info
