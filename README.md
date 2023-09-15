@@ -100,8 +100,11 @@ In the Worker Options Menu, you can choose any option to show worker info, depar
 
 ### Edit Worker Info
 Yon can change any info of current worker if choose
-- Lastname (change worker's lastname)
-- Firstname (change worker's firstname)
-- Gender (change worker's gender)
-- Shift (change worker's shift)
+- Lastname 
+- Firstname 
+- Gender 
+- Shift 
 - Exit
+
+### Exit the Command-line
+You can Exit the command line from choosing Exit in menu or press ctrl+c; then you will exit the program
