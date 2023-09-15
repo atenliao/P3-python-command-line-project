@@ -21,7 +21,7 @@ if __name__ == '__main__':
         Shift = ['7:30am-6:00pm', '7:30am-12:30pm', '1:00pm-6:00pm', '6:30pm-5:00am', '6:30pm-11:30pm','0:00am-5:00am']
         
         departments =myDepartment.setDepartments()
-        # print(departments)
+        
         workers = []
         rolename = ['Pack Flow', 'Picking','Pack Single', 'Customer Return', 'Waterspider','Sort Flow','Rebin','Ship Dock', 'Problem solve']
         for i in range(50):
@@ -38,14 +38,14 @@ if __name__ == '__main__':
                 Employee_ID= random.randint(10000,50000),
                 department_id = department.id
             )
-            # import ipdb; ipdb.set_trace()
+            
             session.add(worker)
             session.commit()
 
             workers.append(worker)
 
         roles=[]
-        # departments=[]
+        
         for i in range(len(rolename)):
             role = Role(
                 name = rolename[i],

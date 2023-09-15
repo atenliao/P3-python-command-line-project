@@ -151,18 +151,20 @@ class Cli():
             worker.login = self.create_Login(worker.lastname, worker.firstname)
             session.commit()
             print("Your Firstname has already updated successfully!")
-            
+
         elif selection == "Gender":
             gender = prompt.getGender()
             worker.gender = gender
             session.commit()
             print("Your Gender has already updated successfully!")
+
         elif selection == "Shift":
             shift = prompt.getShift()
             print('Shift is',shift)
             worker.shift = shift
             session.commit()
             print("Your Shift has already updated successfully!")
+            
         elif selection == "Exit":
             self.exit()
 
