@@ -170,7 +170,6 @@ class Cli():
     def show_options(self,options=None,title=None):
         print("\n")
         if isinstance(options,list):
-            # print(color(title).rgb_fg(115,100,1))
             terminal_menu = TerminalMenu(menu_entries=options,title = title,menu_highlight_style=("bg_black","fg_yellow"),)
             menu_entry_index = terminal_menu.show()
             return(options[menu_entry_index])

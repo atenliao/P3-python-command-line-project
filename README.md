@@ -89,6 +89,9 @@ You need to choose Yes if you are new worker and then follow the prompt to input
 The new worker will be ask to input lastname, firstname, gender, and shift. then, the new worker record will be created and automatically generate Employee ID and worker login, be assigned role and department.\
 After the new worker being generated, you wil be shown a <b>Woker Options Menu</b>
 
+### Worker record exist in database
+If your recored of worker is in database, you can choose 'NO' in main menu. Then, input your login \
+the worker login is worker <font color="green">lastname + 4 characters of firstname</font>. If the firstname len is less then 4, you input <font color="green"> lastname + firstname</font> to enter <b>Worker Options Menu</b>, and choose option for showing worker information.
 ### In Worker Options Menu
 In the Worker Options Menu, you can choose any option to show worker info, department, roles, edit worker ino, or delete worker.
 - Show worker Info
