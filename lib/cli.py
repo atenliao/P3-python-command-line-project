@@ -16,7 +16,7 @@ prompt = Prompt()
 class Cli():
     def start(self):
         self.clear_screen(1)
-        Banner.Displaystring("Welcome Workers Database")
+        Banner.Displaystring("Welcome Workers' Database")
         return self.welcome()
 
     def welcome(self):
@@ -119,6 +119,7 @@ class Cli():
         Firstname = self.get_worker_info("please enter your firstname")
         Gender = prompt.getGender()
         Shift = prompt.getShift()
+        print(f"shift is: {Shift}")
         login =  self.create_Login(Lastname, Firstname)
         role = random.choice(session.query(Role).all())
         worker = Worker.create(

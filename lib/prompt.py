@@ -2,18 +2,24 @@ from simple_term_menu import TerminalMenu
 
 class Prompt():
 
+    def __init__(self):
+        self.shift=str()
+
     def askQuestion(self, question):
         userInput = input(question +"\n")
         if self.confirm(userInput):
             return userInput
         else:
-            return askQuestion(question)
+            return self.askQuestion(question)
     
 
 
     def confirm(self,content,input="input"):
         print(f"your {input} is {content}; are you confirm\n")
-        return self.yesno() == "Yes"
+        if self.yesno() == "Yes":
+            return True
+        else:
+            return False
 
     def yesno(self, option=None):
         options = ["Yes","No"]
@@ -38,8 +44,7 @@ class Prompt():
             2: "Maile"
         }
         gender = self.makeMenu(options)
-        if self.confirm(gender,input="Gender"):
-            return gender
+        return gender
 
     def getShift(self):
         options=[
@@ -52,7 +57,5 @@ class Prompt():
         ]
        
         shift= self.makeMenu(options)
-        if self.confirm(shift,input="time shift"):
-            return shift
-        else:
-            getShift()
+        return shift
+       
